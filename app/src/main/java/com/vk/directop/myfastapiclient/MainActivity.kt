@@ -9,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import retrofit2.Call
@@ -33,6 +34,13 @@ fun MyApp() {
     var prediction by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(false) }
     val context = LocalContext.current
+    // Get the keyboard controller to hide it
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+    // Function to hide the keyboard
+    fun hideKeyboard() {
+        keyboardController?.hide()
+    }
 
     Column(modifier = Modifier.padding(16.dp)) {
         Text("Iris Prediction", style = MaterialTheme.typography.headlineLarge)
@@ -79,6 +87,7 @@ fun MyApp() {
                 }
 
                 isLoading = true
+                hideKeyboard()  // Hide the keyboard
                 val irisSpecies = IrisSpecies(
                     sepal_length = sepalLengthValue,
                     sepal_width = sepalWidthValue,
