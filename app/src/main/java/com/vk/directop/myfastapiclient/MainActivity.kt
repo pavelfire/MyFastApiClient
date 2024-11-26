@@ -26,10 +26,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MyApp() {
-    var sepalLength by remember { mutableStateOf("") }
-    var sepalWidth by remember { mutableStateOf("") }
-    var petalLength by remember { mutableStateOf("") }
-    var petalWidth by remember { mutableStateOf("") }
+    var sepalLength by remember { mutableStateOf("1") }
+    var sepalWidth by remember { mutableStateOf("1") }
+    var petalLength by remember { mutableStateOf("1") }
+    var petalWidth by remember { mutableStateOf("90") }
     var prediction by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(false) }
     val context = LocalContext.current
