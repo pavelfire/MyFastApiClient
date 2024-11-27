@@ -34,10 +34,8 @@ fun MyApp() {
     var prediction by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(false) }
     val context = LocalContext.current
-    // Get the keyboard controller to hide it
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    // Function to hide the keyboard
     fun hideKeyboard() {
         keyboardController?.hide()
     }
@@ -47,7 +45,6 @@ fun MyApp() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Input fields
         TextField(value = sepalLength, onValueChange = { sepalLength = it }, label = { Text("Sepal Length") })
         Spacer(modifier = Modifier.height(8.dp))
         TextField(value = sepalWidth, onValueChange = { sepalWidth = it }, label = { Text("Sepal Width") })
@@ -58,10 +55,8 @@ fun MyApp() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Predict button
         Button(
             onClick = {
-                // Validation for input fields
                 val sepalLengthValue = sepalLength.toFloatOrNull()
                 if (sepalLengthValue == null) {
                     Toast.makeText(context, "Invalid Sepal Length", Toast.LENGTH_SHORT).show()
@@ -87,7 +82,7 @@ fun MyApp() {
                 }
 
                 isLoading = true
-                hideKeyboard()  // Hide the keyboard
+                hideKeyboard()
                 val irisSpecies = IrisSpecies(
                     sepal_length = sepalLengthValue,
                     sepal_width = sepalWidthValue,
@@ -122,7 +117,6 @@ fun MyApp() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Display prediction result
         Text("Prediction: $prediction")
     }
 }
